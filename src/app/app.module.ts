@@ -7,6 +7,10 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListaalumnosComponent } from './components/listaalumnos/listaalumnos.component';
 import { GruposComponent } from './components/grupos/grupos.component';
+import { appRoutingProvider, routing } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AlumnosService } from './services/alumnos.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +22,15 @@ import { GruposComponent } from './components/grupos/grupos.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    routing,
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    appRoutingProvider,
+    AlumnosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

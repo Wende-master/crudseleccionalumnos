@@ -1,1 +1,26 @@
-<p>grupos works!</p>
+<div class="container row mt-5">
+
+    <div class="listaalumnos col-3" *ngIf="alumnos">
+        <ul>
+            <li *ngFor="let alumno of alumnos">{{alumno.nombre}}</li>
+        </ul>
+
+        <div class="col-md-4 text-right">
+            <button class="btn btn-success btn-block" (click)="generarGrupos()" >Generar</button>
+            <button class="btn btn-success btn-block" (click)="generarPDF()">Descargar PDF</button>
+          </div>
+    </div>
+
+    <div id="grupos-container" class="row col-6">
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+        <div class="grupo col"></div>
+    </div>
+    <br>
+
+</div>
