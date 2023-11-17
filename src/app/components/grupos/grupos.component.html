@@ -4,11 +4,16 @@
         <ul>
             <li *ngFor="let alumno of alumnos">{{alumno.nombre}}</li>
         </ul>
-
-        <div class="col-md-4 text-right">
-            <button class="btn btn-success btn-block" (click)="generarGrupos()" >Generar</button>
-            <button class="btn btn-success btn-block" (click)="generarPDF()">Descargar PDF</button>
-          </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-success btn-block" (click)="generarGrupos()">Generar</button>
+                &nbsp;
+                <button class="btn btn-success btn-block" (click)="generarPDF()">
+                    <img width="17px" src="../../../assets/icons/downolad.svg" alt="">
+                </button>
+            </div>
+        </div>
     </div>
 
     <div id="grupos-container" class="row col-6">

@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { AlumnosService } from '../../services/alumnos.service';
 import { Alumno } from '../../models/alumno';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-grupos',
@@ -11,7 +12,7 @@ import { Alumno } from '../../models/alumno';
 })
 export class GruposComponent {
   public alumnos!: Array<Alumno>;
-  
+
   constructor(private _service: AlumnosService) {
 
   }
@@ -29,19 +30,6 @@ export class GruposComponent {
   playAudio(): void {
     let audio = new Audio('./../../../assets/audio/himno.mp3');
     audio.play();
-  }
-
-  public generarPDF(): void {
-    var DATA: any = document.getElementById('grupos-container');
-    html2canvas(DATA).then((canvas) => {
-      var fileWidth = 208;
-      var fileHeight = (canvas.height * fileWidth) / canvas.width;
-      var FILEURI = canvas.toDataURL('image/png');
-      var PDF = new jsPDF('p', 'mm', 'a4');
-      var position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('grupos.pdf');
-    });
   }
 
 
@@ -77,9 +65,59 @@ export class GruposComponent {
             arrayGrupos[grupo].children.length === 4
           ) {
             (arrayGrupos[grupo] as HTMLElement).style.backgroundColor = 'lightgreen';
+            // Hace que al descargar el archivo en pdf, mantenga el background-color {ó el color}
           }
+
         }
       }, 1000);
+    }
+  }
+
+
+  hayAlumnosEnGrupos(): boolean {
+    let arrayGrupos = Array.from(document.querySelector('#grupos-container')!.children);
+    if (
+      // Hasta que se completen los grupos no se realiza la descarga del pdf
+      arrayGrupos[0].children.length == 4) {
+      return arrayGrupos.some((grupo: Element) => grupo.children.length > 0);
+      
+    } else {
+      return false;
+    }
+
+  }
+
+  generarPDF(): void {
+    var DATA: any = document.getElementById('grupos-container');
+    if (this.hayAlumnosEnGrupos() == true) {
+
+      html2canvas(DATA).then((canvas) => {
+        var fileWidth = 208;
+        var fileHeight = (canvas.height * fileWidth) / canvas.width;
+        var FILEURI = canvas.toDataURL('image/png');
+        var PDF = new jsPDF('p', 'mm', 'a4');
+        var position = 0;
+        Swal.fire({
+          title: "Descarga del Archivo",
+          text: "Por favor espere mientras se crea su archivo.",
+          imageUrl: FILEURI,
+          showConfirmButton: false,
+
+        }).then(
+          function () {
+            PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+            PDF.save('grupos.pdf');
+          }
+        )
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'No hay grupos completos!',
+        text: 'Espere llenar los grupos antes de generar el reporte',
+        showConfirmButton: false,
+        timer: 2500,
+      })
     }
   }
 }

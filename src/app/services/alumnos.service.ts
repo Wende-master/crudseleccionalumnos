@@ -33,28 +33,4 @@ export class AlumnosService {
     return promise;
   }
 
-
-  // axios.post(url, personaje)
-  //     .then(response => {
-  //         Swal.fire({
-  //             icon: 'success',
-  //             title: 'Creada',
-  //             text: 'La serie se ha guardado correctamente',
-  //             timer: 1500
-  //         });
-
-  //         resolve(response.data);
-  //     })
-  //     .catch(error => {
-  //         Swal.fire({
-  //             icon: 'error',
-  //             title: 'Error',
-  //             text: 'Hubo un problema al guardar la serie',
-  //             timer: 1500
-  //         });
-
-  //         reject(error);
-  //     });
-
-
 }
