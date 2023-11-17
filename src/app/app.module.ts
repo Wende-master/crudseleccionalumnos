@@ -11,6 +11,8 @@ import { appRoutingProvider, routing } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AlumnosService } from './services/alumnos.service';
+import { ActualizaralumnoComponent } from './components/actualizaralumno/actualizaralumno.component';
+import { CreatealumnosComponent } from './components/createalumnos/createalumnos.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AlumnosService } from './services/alumnos.service';
     MenuComponent,
     HomeComponent,
     ListaalumnosComponent,
-    GruposComponent
+    GruposComponent,
+    ActualizaralumnoComponent,
+    CreatealumnosComponent
   ],
   imports: [
     BrowserModule,
