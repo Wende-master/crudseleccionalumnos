@@ -1,31 +1,120 @@
-<div class="container row mt-5">
+<style>
+    #sidebar-nav {
+        width: 200px;
+    }
+</style>
 
-    <div class="listaalumnos col-3" *ngIf="alumnos">
-        <ul>
-            <li *ngFor="let alumno of alumnos">{{alumno.nombre}}</li>
-        </ul>
-        
-        <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-success btn-block" (click)="generarGrupos()">Generar</button>
-                &nbsp;
-                <button class="btn btn-success btn-block" (click)="generarPDF()">
-                    <img width="17px" src="../../../assets/icons/downolad.svg" alt="">
-                </button>
+<div class="container-fluid row mt-5">
+
+    <div class="row flex-nowrap">
+        <div class="col-auto px-0">
+            <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start listaalumnos col-3"
+                    *ngIf="alumnos">
+                    <h4 class="">Alumnos 2023/2024</h4>
+                    <a [routerLink]="['/actualizar/', alumno.idAlumno]"
+                        class="list-group-item border-end-0 d-inline-block " *ngFor="let alumno of alumnos"
+                        data-bs-parent="#sidebar"><strong>{{alumno.nombre}}</strong> </a>
+
+                    <button class="list-group-item btn btn-success btn-block" (click)="generarGrupos()">Generar</button>
+
+                    <button class="list-group-item btn btn-success btn-block" (click)="generarPDF()">
+                        <img width="17px" src="../../../assets/icons/downolad.svg" alt="">
+                    </button>
+
+                </div>
             </div>
         </div>
+        <main class="col ps-md-2 pt-2">
+            <button data-bs-target="#sidebar" data-bs-toggle="collapse"
+                class="btn btn-outline-warning border-2 rounded text-decoration-none">
+                <img src="../../../assets/icons/menu.svg" alt=""> Alumnos
+            </button>
+            <div class="row">
+                <div class="col-12">
+                    <div id="grupos-container" class="row col-6">
+                        
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+                        <div class="grupo col"></div>
+
+                        <!-- <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 1</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 2</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 3</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 4</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 5</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 6</div>
+                                <div class="card-body">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 7</div>
+                                <div class="card-body">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grupo col">
+                            <div class="card">
+                                <div class="card-header">Grupo 8</div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div> -->
+
+                        
+                    </div>
+                </div>
+            </div>
+
+        </main>
     </div>
 
-    <div id="grupos-container" class="row col-6">
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-        <div class="grupo col"></div>
-    </div>
-    <br>
 
 </div>
