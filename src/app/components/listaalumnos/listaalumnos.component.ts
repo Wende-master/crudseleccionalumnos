@@ -7,19 +7,19 @@ import { AlumnosService } from '../../services/alumnos.service';
   templateUrl: './listaalumnos.component.html',
   styleUrl: './listaalumnos.component.css'
 })
-export class ListaalumnosComponent implements OnInit{
-  public alumnos!:Array<Alumno>
-  constructor(private _service:AlumnosService) {
-    
+export class ListaalumnosComponent implements OnInit {
+  public alumnos!: Array<Alumno>
+  constructor(private _service: AlumnosService) {
+
   }
 
   ngOnInit(): void {
-    this.getAlumnosActuales()
+    this.getAlumnosActuales();
   }
 
-  getAlumnosActuales():void{
-    this._service.geAlumnosPorYear(2023).subscribe(response=>{
-      this.alumnos=response;
+  getAlumnosActuales(): void {
+    this._service.geAlumnosPorYear(2023).subscribe(response => {
+      this.alumnos = response;
     })
   }
 

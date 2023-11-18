@@ -1,0 +1,12 @@
+<div class="container">
+    <form #loginForm="ngForm" class="form-group">
+        <label class="form-label">Usuario</label>
+        <input type="text" #userName name="userName" class="form-control" /><br />
+        
+        <label class="form-label">Contraseña</label>
+        <input type="text" #password name="password" class="form-control" /><br />
+  
+        <button (click)="login()" class="btn btn-success ">Login</button><br />
+    </form>
+    <br>
+</div>

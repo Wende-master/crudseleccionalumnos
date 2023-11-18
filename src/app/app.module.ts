@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AlumnosService } from './services/alumnos.service';
 import { ActualizaralumnoComponent } from './components/actualizaralumno/actualizaralumno.component';
 import { CreatealumnosComponent } from './components/createalumnos/createalumnos.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CreatealumnosComponent } from './components/createalumnos/createalumnos
     ListaalumnosComponent,
     GruposComponent,
     ActualizaralumnoComponent,
-    CreatealumnosComponent
+    CreatealumnosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
