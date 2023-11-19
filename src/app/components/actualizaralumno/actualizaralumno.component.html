@@ -1,5 +1,51 @@
 <div class="container">
     <h1>Actulizando alumnos</h1>
 
+    <form #alumnoForm="ngForm" (ngSubmit)="actualizarAlumnoConToken()"> <!-- actualizarAlumnoSinToken -->
+        <div class="mb-3">
+            <label for="idAlumno" class="form-label">IdAlumno:</label>
+            <input type="number" class="form-control" placeholder="idAlumno" #idAlumno name="idAlumno" disabled
+            value="{{alumno.idAlumno}}"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="nombreInput" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" placeholder="Nombre" #nombreInput name="nombreInput"
+            value="{{alumno.nombre}}"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="apellidosInput" class="form-label">Apellidos:</label>
+            <input type="text" class="form-control" placeholder="Apellidos" #apellidosInput name="apellidosInput"
+            value="{{alumno.apellidos}}"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="imagenInput" class="form-label">URL imagen:</label>
+            <input type="text" class="form-control" placeholder="Imagen(formato string...)" #imagenInput name="imagenInput"
+            value="{{alumno.imagen}}"
+            >
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" #activoInput name="activoInput"
+            value="{{alumno.activo}}"
+            checked="{{alumno.activo =='? true : false }}"
+            >
+            <label class="form-check-label" for="activoInput">Activo</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="idCursoInput" class="form-label">ID Curso:</label>
+            <input type="number" class="form-control" placeholder="2023" #idCursoInput name="idCursoInput"
+            value="{{alumno.idCurso}}"
+            >
+        </div>
+
+        <button class="btn btn-success">Actualizar</button>
+    </form>
 
 </div>

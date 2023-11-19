@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Alumno } from '../../models/alumno';
 import { AlumnosService } from '../../services/alumnos.service';
@@ -11,7 +11,7 @@ import { User } from '../../models/user.models';
   templateUrl: './createalumnos.component.html',
   styleUrl: './createalumnos.component.css'
 })
-export class CreatealumnosComponent {
+export class CreatealumnosComponent implements OnInit{
 
   @ViewChild('alumnoForm') alumnoForm!: NgForm;
   @ViewChild('nombreInput') nombreInput!: ElementRef;
@@ -22,16 +22,15 @@ export class CreatealumnosComponent {
 
   public alumnos: Array<Alumno> = [];
   
-  //Para el token 
-  public user = new User(
-    'alumno',
-    'tajamar'
-  );
 
-  constructor(private _service: AlumnosService, private router: Router) {
+  constructor(private _service: AlumnosService, private _router: Router) {
 
 
 
+  }
+
+  ngOnInit(): void {
+    //this.login()
   }
 
   guardarAlumno() {
@@ -65,7 +64,7 @@ export class CreatealumnosComponent {
           timer: 1500
         });
         // Redirigir a la página de inicio
-        this.router.navigate(['/home']);
+        this._router.navigate(['/home']);
 
       })
       .catch(error => {
@@ -80,7 +79,13 @@ export class CreatealumnosComponent {
       });
   }
 
+  //De momento funciona
   crearAlumnoConToken(): void {
+    var user = new User(
+      'alumno',
+      'tajamar'
+    );
+    
     var nombre = this.nombreInput.nativeElement.value;
     var apellidos = this.apellidosInput.nativeElement.value;
     var imagen = this.imagenInput.nativeElement.value;
@@ -99,12 +104,13 @@ export class CreatealumnosComponent {
     }
     var newAlumno = new Alumno(0, nombre, apellidos, imagen, activo, idCurso);
 
-    this._service.loginAlumno(this.user).subscribe(response => {
+    this._service.loginAlumno(user).subscribe(response => {
       let token = response.response;
-      console.log(token.response);
-      console.log(newAlumno)
+      console.log("Token-response: ",token);
+      console.log(newAlumno);
       this._service.postAlumnoConToken(newAlumno, token).subscribe(result => {
         console.log(result);
+        
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -114,7 +120,7 @@ export class CreatealumnosComponent {
           timer: 1500,
         }).then(() => {
           // Redirigir a la página de inicio
-          this.router.navigate(['/home']);
+          this._router.navigate(['/home']);
         })
           .catch(error => {
             console.error(error);

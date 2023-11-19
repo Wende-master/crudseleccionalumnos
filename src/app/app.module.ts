@@ -14,6 +14,7 @@ import { AlumnosService } from './services/alumnos.service';
 import { ActualizaralumnoComponent } from './components/actualizaralumno/actualizaralumno.component';
 import { CreatealumnosComponent } from './components/createalumnos/createalumnos.component';
 import { LoginComponent } from './components/login/login.component';
+import { EliminarComponent } from './components/eliminar/eliminar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/login/login.component';
     GruposComponent,
     ActualizaralumnoComponent,
     CreatealumnosComponent,
-    LoginComponent
+    LoginComponent,
+    EliminarComponent
   ],
   imports: [
     BrowserModule,

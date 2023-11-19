@@ -35,18 +35,22 @@ export class AlumnosService {
     return promise;
   }
 
-  postAlumnoConToken(alumno: Alumno, token: string): Observable<any>{
-    // Inserta  a veces, y luego da unauthorized(401); no ENTIENDO
+  postAlumnoConToken(alumno: Alumno, token: string): Observable<any> {
+    // unauthorized(401); no ENTIENDO
 
-    var request = "api/alumnos/insertalumnotoken";
+    var request = "api/Alumnos/InsertAlumnoToken";
     var url = environment.urlApi + request;
     var body = alumno;
-    var json = JSON.stringify(body); 
-    var httpOptions = { headers: new HttpHeaders().set('Content-Type', 'application/json'), 
-      'Authorization': 'Bearer ' + token,
+    var json = JSON.stringify(body);
+
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
     };
-    console.log(token);
-    return this._http.post(url, json, httpOptions );
+    //console.log(token);
+    return this._http.post(url, json, httpOptions);
   }
 
   loginAlumno(user: User): Observable<any> {
@@ -65,10 +69,11 @@ export class AlumnosService {
     console.log(url);
 
     let promise = new Promise((resolve) => {
-      var httpOptions = { headers: new HttpHeaders().set('Content-Type', 'application/json'), 
-      'Authorization': 'Bearer ' + token
-    };
-    console.log(token)
+      var httpOptions = {
+        headers: new HttpHeaders().set('Content-Type', 'application/json'),
+        'Authorization': 'Bearer ' + token
+      };
+      console.log(token)
       this._http.get(url, httpOptions).subscribe(response => {
         console.log(response)
         resolve(response);
@@ -77,4 +82,42 @@ export class AlumnosService {
     return promise;
   }
 
+  deleteAlumno(idAlumno: number): Observable<any> {
+    var request = "api/alumnos/deletealumno/" + idAlumno;
+    var url = environment.urlApi + request;
+    return this._http.delete(url);
+  }
+
+  putAlumno(alumno: Alumno): Promise<any> {
+    var request = "api/alumnos/updatealumno";
+    var url = environment.urlApi + request;
+
+    let promise = new Promise((resolve) => {
+      var json = JSON.stringify(alumno);
+      var httpOptions = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+      this._http.put(url, json, httpOptions).subscribe(response => {
+        //console.log(response);
+
+        resolve(response);
+      });
+
+    })
+    return promise;
+  }
+
+  putAlumnoToken(alumno: Alumno, token: string): Observable<any> {
+    var request = "api/Alumnos/updateAlumnoToken";
+    var url = environment.urlApi + request;
+    var body = alumno;
+    var json = JSON.stringify(body);
+
+    var httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+    console.log(token);
+    return this._http.put(url, json, httpOptions);
+  }
 }

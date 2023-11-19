@@ -10,12 +10,16 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <a [routerLink]="['/actualizar/' + alumno.idAlumno]"
+                            <a [routerLink]="['/actualizar/' + alumno.idAlumno, alumno.nombre, alumno.apellidos, alumno.imagen, alumno.activo, alumno.idCurso]"
                             class="btn btn-primary btn-block col-md-6">Actualizar</a>
                         </div>
                         <div class="col-md-6">
-                            <a [routerLink]="['/eliminar/' + alumno.idAlumno]"
-                            class="btn btn-danger btn-block col-md-6">Eliminar</a>
+
+                            <button class="btn btn-danger btn-block col-md-6" (click)="eliminarAlumno(alumno.idAlumno)">
+                                Eliminar
+                            </button>
+                            <!-- <a [routerLink]="['/eliminar/', alumno.idAlumno]"
+                            class="btn btn-danger btn-block col-md-6">Eliminar</a> -->
                         </div>
                     </div>
 
