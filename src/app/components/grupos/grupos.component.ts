@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import { AlumnosService } from '../../services/alumnos.service';
 import { Alumno } from '../../models/alumno';
 import Swal from 'sweetalert2';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-grupos',
@@ -32,9 +33,17 @@ export class GruposComponent {
     audio.play();
   }
 
+  // stopAudio(): void {
+  //   var audio = new Audio(' ');
+  //   audio.src = '';
+  //   audio.currentTime = 0;
+
+  // }
+  
   // Esto sirve para añadir los alumnos nuevos a cada grupo (ya que tenemos unt total de 25 alumnos)
   generarGrupos(): void {
     this.playAudio();
+
     let contador = 0;
     const totalAlumnos = this.alumnos.length;
     if (contador < totalAlumnos) {
@@ -50,6 +59,7 @@ export class GruposComponent {
             this.alumnos[contador].apellidos;
           arrayGrupos[grupo].append(alumnoSpan);
           contador++;
+
         } else {
           const alumnosPorGrupo = Math.floor(totalAlumnos / arrayGrupos.length);
           const gruposConAlumnoExtra = totalAlumnos % arrayGrupos.length;
@@ -67,6 +77,7 @@ export class GruposComponent {
             const alumnosEnGrupo = arrayGrupos[grupo].children.length;
             if (alumnosEnGrupo >= alumnosPorGrupo + (grupo < gruposConAlumnoExtra ? 1 : 0)) {
               (arrayGrupos[grupo] as HTMLElement).style.backgroundColor = 'lightgreen';
+
             }
           }
         }
@@ -74,7 +85,7 @@ export class GruposComponent {
     }
   }
 
-    // Este método hace lo mismo solo que no añade los alumnos nuevos 
+  // Este método hace lo mismo solo que no añade los alumnos nuevos 
   // generarGrupos(): void {
   //   this.playAudio();
   //   let contador = 0;
